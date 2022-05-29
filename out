@@ -1,0 +1,62 @@
+eval_it_pool:  [0, 500, 1000]
+Files already downloaded and verified
+Files already downloaded and verified
+
+================== Exp 0 ==================
+ 
+Hyper-parameters: 
+ {'method': 'DC', 'dataset': 'CIFAR10', 'model': 'ConvNet', 'ipc': 1, 'eval_mode': 'S', 'num_exp': 5, 'num_eval': 20, 'epoch_eval_train': 300, 'Iteration': 1000, 'lr_img': 0.1, 'lr_net': 0.01, 'batch_real': 256, 'batch_train': 256, 'init': 'noise', 'dsa_strategy': 'None', 'data_path': '/home/zfgao/work/DatasetCondensation/data/cifar', 'save_path': 'result', 'dis_metric': 'ours', 'outer_loop': 1, 'inner_loop': 1, 'device': 'cuda', 'dsa_param': <utils.ParamDiffAug object at 0x7f7cc6801410>, 'dsa': False}
+Evaluation model pool:  ['ConvNet']
+class c = 0: 5000 real images
+class c = 1: 5000 real images
+class c = 2: 5000 real images
+class c = 3: 5000 real images
+class c = 4: 5000 real images
+class c = 5: 5000 real images
+class c = 6: 5000 real images
+class c = 7: 5000 real images
+class c = 8: 5000 real images
+class c = 9: 5000 real images
+real images channel 0, mean = -0.0000, std = 1.2211
+real images channel 1, mean = -0.0002, std = 1.2211
+real images channel 2, mean = 0.0002, std = 1.3014
+initialize synthetic data from random noise
+[2022-05-28 21:37:30] training begins
+-------------------------
+Evaluation
+model_train = ConvNet, model_eval = ConvNet, iteration = 0
+DC augmentation parameters: 
+ {'crop': 4, 'scale': 0.2, 'rotate': 45, 'noise': 0.001, 'strategy': 'none'}
+/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/nn/parallel/data_parallel.py:26: UserWarning: 
+    There is an imbalance between your GPUs. You may want to exclude GPU 0 which
+    has less than 75% of the memory or cores of GPU 8. You can do so by setting
+    the device_ids argument to DataParallel, or by setting the CUDA_VISIBLE_DEVICES
+    environment variable.
+  warnings.warn(imbalance_warn.format(device_ids[min_pos], device_ids[max_pos]))
+Traceback (most recent call last):
+  File "main.py", line 236, in <module>
+    main()
+  File "main.py", line 129, in main
+    _, acc_train, acc_test = evaluate_synset(it_eval, net_eval, image_syn_eval, label_syn_eval, testloader, args)
+  File "/home/zfgao/work/DatasetCondensation/utils.py", line 352, in evaluate_synset
+    loss_train, acc_train = epoch('train', trainloader, net, optimizer, criterion, args, aug = True)
+  File "/home/zfgao/work/DatasetCondensation/utils.py", line 307, in epoch
+    for i_batch, datum in enumerate(dataloader):
+  File "/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 819, in __next__
+    return self._process_data(data)
+  File "/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 846, in _process_data
+    data.reraise()
+  File "/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/_utils.py", line 369, in reraise
+    raise self.exc_type(msg)
+RuntimeError: Caught RuntimeError in DataLoader worker process 0.
+Original Traceback (most recent call last):
+  File "/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/utils/data/_utils/worker.py", line 178, in _worker_loop
+    data = fetcher.fetch(index)
+  File "/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 44, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/zfgao/anaconda3/envs/dc/lib/python3.7/site-packages/torch/utils/data/_utils/fetch.py", line 44, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "/home/zfgao/work/DatasetCondensation/utils.py", line 111, in __getitem__
+    return self.images[index], self.labels[index]
+RuntimeError: CUDA error: initialization error
+

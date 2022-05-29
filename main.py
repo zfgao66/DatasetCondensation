@@ -7,10 +7,10 @@ import torch
 import torch.nn as nn
 from torchvision.utils import save_image
 from utils import get_loops, get_dataset, get_network, get_eval_pool, evaluate_synset, get_daparam, match_loss, get_time, TensorDataset, epoch, DiffAugment, ParamDiffAug
-
+# os.environ["CUDA_VISIBLE_DEVIECES"]="0"
 
 def main():
-
+    torch.backends.cudnn.enabled = False
     parser = argparse.ArgumentParser(description='Parameter Processing')
     parser.add_argument('--method', type=str, default='DC', help='DC/DSA')
     parser.add_argument('--dataset', type=str, default='CIFAR10', help='dataset')
